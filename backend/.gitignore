@@ -1,0 +1,45 @@
+# Node dependencies
+node_modules/
+
+# Build output (adjust if your outDir is different)
+dist/
+build/
+
+# Logs
+logs/
+*.log
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Test coverage
+coverage/
+
+# Editor/IDE settings
+.vscode/
+.idea/
+.vs/
+
+# OS-specific files
+.DS_Store
+
+# npm/yarn debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Miscellaneous
+temp/
+*.tmp
+*.save
+*.save.*
+
+# Keys and secrets
+*.pem
+secrets.txt
+keys/*
+!keys/*.md
+!keys/*.example
+
