@@ -14,7 +14,7 @@ interface DashboardState {
   fetchNoteData: (userId: number | null) => Promise<void>;
 }
 
-const useDashboardStore = create<DashboardState>((set, get) => ({
+const useDashboardStore = create<DashboardState>((set) => ({
   data: null,
   loading: false,
   error: null,

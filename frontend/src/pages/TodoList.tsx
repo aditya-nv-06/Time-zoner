@@ -1,4 +1,5 @@
-import React, { useEffect, useState, ChangeEvent, FormEvent } from "react";
+import { useEffect, useState } from "react"; 
+import type { ChangeEvent, FormEvent } from "react";
 import useUserStore from "../zustand/userstate";
 import useTodoStore from "../zustand/todostate";
 

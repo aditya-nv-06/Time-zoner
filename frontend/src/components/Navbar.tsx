@@ -41,7 +41,7 @@ function Navbar() {
       <div className="flex-1" />
       {/* User Profile */}
       <div className="px-6 py-8">
-        <UserProfile username={user?.username} email={user?.email} />
+        <UserProfile username={user?.name} email={user?.email} />
       </div>
       {/* Login/Logout Button */}
       <div className="px-6 pb-6">

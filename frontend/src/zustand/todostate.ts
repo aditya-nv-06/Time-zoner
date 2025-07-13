@@ -38,7 +38,7 @@ const useTodoStore = create<TodoState>((set, get) => ({
   },
   addTodo: async (userId, text) => {
     try {
-      const response = await axios.post(
+       await axios.post(
         'http://localhost:3000/api/todos/create',
         { userId, title: text },
         {
@@ -48,10 +48,10 @@ const useTodoStore = create<TodoState>((set, get) => ({
           },
         }
       );
-      // Refetch todos after adding
+
       await get().fetchTodos(userId);
     } catch (error) {
-      // Handle error
+      console.error('Failed to add todo:', error);
     }
   },
   toggleTodo: async (id) => {
