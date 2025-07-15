@@ -1,29 +1,35 @@
-FROM node:current-alpine3.22 AS backend
+
+# ---- Build Stage ----
+FROM node:current-alpine3.22 AS build
 
 WORKDIR /app
 
+# Install dependencies
 COPY package*.json ./
+RUN npm install
 
-RUN npm install --omit=dev \
-    && npm cache clean --force
-    
+# Copy source files
 COPY . .
 
-RUN npm run build
+# Build TypeScript
+RUN npx tsc --project tsconfig.json
 
+# ---- Production Stage ----
 FROM node:current-alpine3.22 AS production
 
 WORKDIR /app
 
+ENV NODE_ENV=production
+
+# Copy only the necessary files from build stage
 COPY package*.json ./
+COPY --from=build /app/dist ./dist
 
-RUN npm install --omit=dev \
-    && npm cache clean --force
+# Install only production dependencies
+RUN npm install --omit=dev && npm cache clean --force
 
-COPY --from=backend /app/dist ./dist
-COPY --from=backend /app/node_modules ./node_modules
-COPY --from=backend /app/package.json ./
-COPY --from=backend /app/package-lock.json ./
-
+# Use non-root user for security (optional, but recommended)
+# RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+# USER appuser
 
 CMD ["node", "dist/index.js"]
