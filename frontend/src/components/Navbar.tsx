@@ -5,6 +5,7 @@ import useUserStore from "../zustand/userstate";
 function Navbar() {
   const user = useUserStore((state) => state.user);
   const isLoggedIn = useUserStore((state) => state.isloggedIn);
+  console.log("User in Navbar:", user);
 
   return (
     <nav className="h-full bg-white border-r dark:bg-gray-900 dark:border-gray-800 flex flex-col">
@@ -41,7 +42,7 @@ function Navbar() {
       <div className="flex-1" />
       {/* User Profile */}
       <div className="px-6 py-8">
-        <UserProfile username={user?.name} email={user?.email} />
+        <UserProfile username={user?.username} email={user?.email} />
       </div>
       {/* Login/Logout Button */}
       <div className="px-6 pb-6">
